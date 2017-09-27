@@ -44,9 +44,11 @@ typedef	struct			s_piece
 {
 	int		s_y;
 	int		s_x;
-	int		u_y;
-	int		u_x;
-	int		d_y;
-	int		d_x;
+	int		z_y;
+	int		z_x;
+	// int		u_y;
+	// int		u_x;
+	// int		d_y;
+	// int		d_x;
 	char	**p;
 }						t_piece;

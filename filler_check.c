@@ -46,14 +46,30 @@ int 	filler_piece_check(s_fil *f, s_piece *, int y, int x)
 	f->i4 = -1;
 	while (++f->i4 < p->s_y)
 	{
-		f->i5 = -1;
-		while (++f->i5 < p->s_x)
+		f->i5 = 0;
+		while (f->i5 < p->s_x)
 		{
-			if (p->p[f->i4][f->i5] == '*' && f->ff = 0 &&
-				filler_piece_check ())
+			if (p->p[f->i4][f->i5] == '*' && f->ff == 0 && (y - f->i4) >= 0 &&
+				(x - f->i5) >= 0 && (y + (f->piece_y - f->i4)) < f->map_y &&
+				(x + (f->piece_x - f->i5)) < f->map_x)
 			{
-
+				f->ff = 1;
+				p->z_y = f->i4;
+				p->z_x = f->i5++;
 			}
+			else if (p->p[f->i4][f->i5] == '*' && f->ff == 1 &&
+				f->map[y + (f->i4 - p->z_y)][x + (f->i5 - p->z_x)] == '.')
+				f->i5++;
+			else if (p->p[f->i4][f->i5] == '.')
+				f->i5++;
+			else if (f->ff == 1)
+			{
+				f->ff = 0;
+				f->i4 = p->z_y;
+				f->i5 = p->z_x + 1;
+			}
+			else
+				f->i5++;
 		}
 	}
 }
