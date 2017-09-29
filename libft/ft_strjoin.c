@@ -30,7 +30,7 @@ char	*ft_strjoin(char *t, char *y)
 	while (y[i])
 		r[x++] = y[i++];
 	r[x] = '\0';
-	ft_strdel(&t);
-	ft_strdel(&y);
+	// ft_strdel(&t);
+	// ft_strdel(&y);
 	return (r);
 }

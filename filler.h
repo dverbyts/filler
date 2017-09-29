@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef FILLER_H
+# define FILLER_H
 #include "libft/libft.h"
 
 typedef	struct			s_fil
@@ -26,6 +28,10 @@ typedef	struct			s_fil
 	int		i3;
 	int		i4;
 	int		i5;
+	int		i6;
+	int		i7;
+	int		i8;
+	int		i9;
 	char	**map;
 	int		**pam;
 	int		ff;
@@ -52,3 +58,20 @@ typedef	struct			s_piece
 	// int		d_x;
 	char	**p;
 }						t_piece;
+
+//int		main(void);
+int		filler_make(t_fil *f, t_piece *p);
+void	filler_koef_map(t_fil *f, t_piece *p);
+void	filler_find_plase(t_fil *f, t_piece *p);
+void	filler_free(t_fil *f, t_piece *p);
+void	filler_init(t_fil *f);
+void	filler_init_pam(t_fil *f);
+int		filler_copy_map(t_fil *f);
+int		filler_copy_piece(t_piece *p);
+int		filler_point_check(t_fil *f, t_piece *p);
+int		filler_piece_check(t_fil *f, t_piece *p, int y, int x);
+int		filler_in_map(t_fil *f);
+int		filler_dots_stars(t_fil *f, t_piece *p);
+void	filler_koef(t_fil *f);
+
+#endif
