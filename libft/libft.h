@@ -21,7 +21,7 @@
 # include <inttypes.h>
 # include <stddef.h>
 
-# define BUFF_SIZE 100
+# define BUFF_SIZE 1
 
 typedef struct			s_line
 {

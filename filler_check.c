@@ -68,7 +68,6 @@ int		filler_piece_check(t_fil *f, t_piece *p, int y, int x)
 	return (0);
 }
 
-
 int		filler_in_map(t_fil *f)
 {
 	int re;
@@ -92,11 +91,14 @@ int		filler_dots_stars(t_fil *f, t_piece *p)
 		f->i9 = 0;
 		while (f->i9 < p->s_x)
 		{
-			if ((f->i8 == p->z_y && f->i9 == p->z_x) || p->p[f->i8][f->i9] == '.')
+			if ((f->i8 == p->z_y && f->i9 == p->z_x) ||
+				p->p[f->i8][f->i9] == '.')
 				f->i9++;
 			else if (p->p[f->i8][f->i9] == '*')
 			{
-				if (f->map[f->i6 + (f->i8 - p->z_y)][f->i7 + (f->i9 - p->z_x)]
+				if ((f->i6 + f->i8 - p->z_y) < f->map_y &&
+					(f->i7 + f->i9 - p->z_x) < f->map_x &&
+					f->map[f->i6 + f->i8 - p->z_y][f->i7 + f->i9 - p->z_x]
 					== '.')
 					f->i9++;
 				else
@@ -117,14 +119,11 @@ void	filler_koef(t_fil *f)
 		{
 			if (f->map[f->i3][f->i4] == (char)f->p2 ||
 				f->map[f->i3][f->i4] == (char)(f->p2 + 32))
-			{	
+			{
 				f->i5 = (f->i1 - f->i3) < 0 ? (f->i1 - f->i3) * -1 :
 				f->i1 - f->i3;
 				f->i6 = (f->i2 - f->i4) < 0 ? (f->i2 - f->i4) * -1 :
 				f->i2 - f->i4;
-//				f->i5 = 0;
-//				f->i6 = 0;
-//				filler_koef2(f);
 				f->i7 = f->i5 > f->i6 ? f->i5 : f->i6;
 				if (f->pam[f->i1][f->i2] == 0 || f->pam[f->i1][f->i2] > f->i7)
 					f->pam[f->i1][f->i2] = f->i7;
@@ -132,9 +131,3 @@ void	filler_koef(t_fil *f)
 		}
 	}
 }
-
-// void	filler_koef2(t_fil *f)
-// {
-// 	f->i5 = (f->i1 - f->i3) < 0 ? (f->i1 - f->i3) * -1 : f->i1 - f->i3;
-// 	f->i6 = (f->i2 - f->i4) < 0 ? (f->i2 - f->i4) * -1 : f->i2 - f->i4;
-// }

@@ -17,7 +17,6 @@ int		main(void)
 	t_fil	*f;
 	t_piece	*p;
 
-//	int fd = open(argv[1], O_RDONLY);
 	f = (t_fil *)malloc(sizeof(t_fil));
 	ft_bzero(f, sizeof(t_fil));
 	p = (t_piece *)malloc(sizeof(t_piece));
@@ -26,13 +25,12 @@ int		main(void)
 	while (1)
 	{
 		if (filler_make(f, p) != 1)
-			return (-1);
-		ft_printf("%i %i\n", f->piece_y, f->piece_x);
+			ft_printf("%d %d\n", -1, -1);
+		ft_printf("%d %d\n", f->piece_y, f->piece_x);
 		f->ff = 0;
 		f->piece_y = 0;
 		f->piece_x = 0;
 	}
-//    close(fd);
 	return (1);
 }
 
@@ -61,7 +59,7 @@ void	filler_koef_map(t_fil *f, t_piece *p)
 		{
 			f->pam[f->i1][f->i2] = 0;
 			f->i3 = 0;
-			if (f->map[f->i1][f->i2] == '.' && filler_point_check(f, p) > 0 )
+			if (f->map[f->i1][f->i2] == '.' && filler_point_check(f, p) > 0)
 				filler_koef(f);
 		}
 	}
@@ -92,8 +90,8 @@ void	filler_find_plase(t_fil *f, t_piece *p)
 	f->i2 = f->i5;
 	if (filler_point_check(f, p) == 0)
 		return ;
-	f->piece_y = f->i1 - p->z_y;
-	f->piece_x = f->i2 - p->z_x;
+	f->piece_y = f->i6 - p->z_y;
+	f->piece_x = f->i7 - p->z_x;
 }
 
 void	filler_free(t_fil *f, t_piece *p)
@@ -110,13 +108,6 @@ void	filler_free(t_fil *f, t_piece *p)
 	p->z_y = 0;
 	p->z_x = 0;
 	f->i1 = -1;
-	//ft_bzero(f->pam, sizeof(int) * (f->map_x * f->map_y));
-	// while (++f->i1 < f->map_y)
-	// {
-	// 	f->i2 = -1;
-	// 	while (++f->i2 < f->map_x)
-	// 		f->pam[f->i1][f->i2] = 0;
-	// }
 	f->i1 = 0;
 	f->i2 = 0;
 	f->i3 = 0;

@@ -10,4 +10,31 @@
 #                                                                              #
 # **************************************************************************** #
 
+NAME = filler
 
+CFLAGS = -Wall -Wextra -Werror
+
+SRC = filler.c filler_check.c filler_read.c
+
+OBJ = $(SRC:.c=.o)
+
+LIB = libft/libft.a
+
+all: $(NAME)
+
+$(NAME): $(OBJ)
+	@make -C libft
+	gcc $(FLAGS) -o $(NAME) $(OBJ) $(LIB)
+
+%.o: %.c
+	@gcc $(CFLAGS) -c -o $@ $<
+
+clean:
+	@rm -f $(OBJ)
+	@make clean -C libft
+
+fclean: clean
+	@rm -f $(NAME)
+	@make fclean -C libft
+
+re: fclean all
